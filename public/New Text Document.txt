@@ -1,0 +1,109 @@
+import React, {Component} from 'react';
+import './App.css';
+
+class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+        txtUserName : '',// trung name o input
+        txtPassWord : '',
+        txtTextArea : '',
+        txtGender : 1 ,
+        txtLang : 'vi'
+    };
+  }
+
+  onHandleChange = (evt) => {
+      let target = evt.target;
+      let name = target.name;
+      let value = target.value;
+
+      this.setState({
+        [name] : value  
+      });
+  }
+
+  onHandleSubmit = (evt) =>{
+      evt.preventDefault();//chan submit
+      console.log(this.state);
+  }
+
+  render(){
+
+    // let elements = product.map((prod, index) => {
+    //   if(prod.status){
+    //     result = <Products key = {prod.id}
+    //                        price = {prod.price}
+    //                        image = {prod.image} >
+    //                     {prod.name}
+    //               </Products>
+    //   }
+      
+    //   return result;
+    // });
+
+
+    return(
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
+              <div className="panel panel-primary">
+                <div className="panel-heading">
+                  <h3 className="panel-title">Panel title</h3>
+                </div>
+
+                <div className="panel-body">
+                  <form action="" method="POST" onSubmit={this.onHandleSubmit} >
+                    <div className="form-group">
+                      <label >UserName</label>
+                      <input type="text" className="form-control" name="txtUserName" onChange={ this.onHandleChange } value={this.state.txtUserName } />
+                      <label >PassWord</label> 
+                      <input type="password" className="form-control" name="txtPassWord" onChange={ this.onHandleChange } />
+                      <br></br>
+                      <hr></hr>
+                      <textarea name="txtTextArea" onChange={ this.onHandleChange } className="form-control" rows="3" ></textarea>
+                      <label >Gender</label>
+                      <select name="txtGender" className="form-control" value = {this.state.txtGender} onChange = {this.onHandleChange}>
+                        <option value="0">Female</option>
+                        <option value="1">Male</option>
+                      </select>
+                      <hr></hr>
+                      <div className="radio">
+                        <label>
+                          <input type="radio" name="txtLang" value="vi" checked={this.state.txtLang === "en"} onChange={ this.onHandleChange}/>
+                          English
+                        </label>
+                        <label>
+                          <input type="radio" name="txtLang" value="en" checked={this.state.txtLang === "vi"} onChange={ this.onHandleChange}/>
+                          Vietnamese
+                        </label>
+                      </div>
+
+                    </div>
+
+
+                    <button type="submit" className="btn btn-primary">Save</button>
+                    <button type="reset" className="btn btn-default">Delete</button>
+                  </form>
+                </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+export default App;
